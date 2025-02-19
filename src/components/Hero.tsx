@@ -1,8 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Mail, ChevronDown, Code2 } from 'lucide-react';
+import { useAdmin } from '../context/AdminContext';
 
 const Hero = () => {
+  const { about } = useAdmin();
+
   return (
     <div id="home" className="min-h-screen relative overflow-hidden bg-gradient-to-br from-violet-50 via-white to-fuchsia-50 dark:from-gray-900 dark:via-gray-800 dark:to-violet-900">
       {/* Animated background elements */}
@@ -37,13 +40,19 @@ const Hero = () => {
           transition={{ duration: 1 }}
           className="text-center w-full"
         >
+          {/* Profil Fotoğrafı */}
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ duration: 0.5 }}
-            className="mx-auto w-24 h-24 mb-8 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-full flex items-center justify-center"
+            className="relative mx-auto w-48 h-48 mb-8 rounded-full overflow-hidden ring-4 ring-violet-500 dark:ring-violet-400 shadow-lg"
           >
-            <Code2 className="w-12 h-12 text-white" />
+            <img
+              src="https://avatars.githubusercontent.com/u/92470093?s=400&u=3a55083e976c40738ce46dfb1223c5fb97ae02cc&v=4"
+              alt="Yunus Emre ALSANCAK"
+              className="w-full h-full object-cover transform scale-110"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-violet-500/30 to-transparent" />
           </motion.div>
 
           <motion.h1
@@ -52,7 +61,7 @@ const Hero = () => {
             transition={{ delay: 0.2, duration: 0.8 }}
             className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-violet-500 to-fuchsia-500 bg-clip-text text-transparent"
           >
-            Merhaba, Ben İsim Soyisim
+            Merhaba, Ben Yunus Emre ALSANCAK
           </motion.h1>
           
           <motion.p
@@ -61,8 +70,7 @@ const Hero = () => {
             transition={{ delay: 0.4, duration: 0.8 }}
             className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-12 max-w-3xl mx-auto"
           >
-            Full Stack Yazılım Mühendisi olarak modern ve ölçeklenebilir web uygulamaları geliştiriyorum.
-            Kullanıcı deneyimini ön planda tutarak yenilikçi çözümler üretiyorum.
+            {about.description}
           </motion.p>
 
           <motion.div
@@ -72,9 +80,9 @@ const Hero = () => {
             className="flex justify-center space-x-6 mb-12"
           >
             {[
-              { Icon: Github, href: "https://github.com", bg: "bg-gray-900 dark:bg-gray-700" },
-              { Icon: Linkedin, href: "https://linkedin.com", bg: "bg-blue-600" },
-              { Icon: Mail, href: "mailto:contact@example.com", bg: "bg-red-500" }
+              { Icon: Github, href: "https://github.com/YUNUSEMREALSANCAK", bg: "bg-gray-900 dark:bg-gray-700" },
+              { Icon: Linkedin, href: "https://www.linkedin.com/in/yunus-emre-alsancak-95475a21b/", bg: "bg-blue-600" },
+              { Icon: Mail, href: "yunusemre@gmail.com", bg: "bg-red-500" }
             ].map(({ Icon, href, bg }, index) => (
               <motion.a
                 key={href}
